@@ -7,6 +7,7 @@ futures==3.2.0
 hyperlink==18.0.0
 idna==2.7
 incremental==17.5.0
+lomond==0.3.3
 PyHamcrest==1.9.0
 singledispatch==3.4.0.3
 six==1.11.0
