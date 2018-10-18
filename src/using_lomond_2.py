@@ -7,18 +7,14 @@ import sys
 import tempfile
 import threading
 import time
-import urllib
+import urllib2
 
 import lomond
 from lomond.persist import persist
 
 def get_json(url):
-    # TODO: Investigate why urllib rejects the response from Chrome's HTTP
-    # server
-    #response = urllib.urlopen(url)
-    #return json.loads(response.read())
-
-    return json.loads(subprocess.check_output(['curl', '--silent', url]))
+    response = urllib2.urlopen(url)
+    return json.loads(response.read())
 
 class Client(object):
     def __init__(self, url):

@@ -6,16 +6,13 @@ import shutil
 import socket
 import subprocess
 import tempfile
+import urllib2
 import urlparse
 import wspy
 
 def get_json(url):
-    # TODO: Investigate why urllib rejects the response from Chrome's HTTP
-    # server
-    #response = urllib.urlopen(url)
-    #return json.loads(response.read())
-
-    return json.loads(subprocess.check_output(['curl', '--silent', url]))
+    response = urllib.urlopen(url)
+    return json.loads(response.read())
 
 port = 9876
 profile_dir = tempfile.mkdtemp()

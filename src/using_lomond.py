@@ -5,17 +5,13 @@ import subprocess
 import sys
 import tempfile
 import time
-import urllib
+import urllib2
 
 import lomond
 
 def get_json(url):
-    # TODO: Investigate why urllib rejects the response from Chrome's HTTP
-    # server
-    #response = urllib.urlopen(url)
-    #return json.loads(response.read())
-
-    return json.loads(subprocess.check_output(['curl', '--silent', url]))
+    response = urllib2.urlopen(url)
+    return json.loads(response.read())
 
 # {"id":122,"method":"Page.navigate","params":{"url":"http://bocoup.com"}}
 

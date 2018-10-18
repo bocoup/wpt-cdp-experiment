@@ -4,18 +4,15 @@ import shutil
 import subprocess
 import tempfile
 import time
+import urllib2
 
 from tornado import websocket
 from tornado.ioloop import IOLoop, PeriodicCallback
 from tornado import gen
 
 def get_json(url):
-    # TODO: Investigate why urllib rejects the response from Chrome's HTTP
-    # server
-    #response = urllib.urlopen(url)
-    #return json.loads(response.read())
-
-    return json.loads(subprocess.check_output(['curl', '--silent', url]))
+    response = urllib2.urlopen(url)
+    return json.loads(response.read())
 
 port = 9876
 profile_dir = tempfile.mkdtemp()

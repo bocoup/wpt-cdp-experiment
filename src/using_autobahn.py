@@ -5,19 +5,15 @@ import subprocess
 import sys
 import tempfile
 import time
-import urllib
+import urllib2
 
 from twisted.python import log
 from twisted.internet import reactor
 from autobahn.twisted.websocket import WebSocketClientProtocol, WebSocketClientFactory
 
 def get_json(url):
-    # TODO: Investigate why urllib rejects the response from Chrome's HTTP
-    # server
-    #response = urllib.urlopen(url)
-    #return json.loads(response.read())
-
-    return json.loads(subprocess.check_output(['curl', '--silent', url]))
+    response = urllib2.urlopen(url)
+    return json.loads(response.read())
 
 # {"id":122,"method":"Page.navigate","params":{"url":"http://bocoup.com"}}
 
